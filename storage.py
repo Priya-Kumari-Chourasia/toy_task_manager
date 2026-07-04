@@ -19,9 +19,7 @@ def load_tasks(filename):
                     title, priority, done = line.strip().split(",")
                     tasks.append(Task(title, int(priority), done == "True"))
                 except ValueError as e:
-                    print(f"Skipping malformed line: {e}")
+                    print(f"Error parsing task: {e}")
     except FileNotFoundError:
-        print(f"File {filename} not found. Returning empty list.")
-    except Exception as e:
-        print(f"An error occurred: {e}")
+        print(f"File '{filename}' not found.")
     return tasks
