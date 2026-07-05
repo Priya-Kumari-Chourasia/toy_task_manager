@@ -7,5 +7,5 @@ def save_tasks(tasks, filename):
             try:
                 validate_task_title(task.title)
                 f.write(f"{task.title},{task.priority},{task.done}\n")
-            except (TypeError, ValueError) as e:
-                raise ValueError(f"Task title is invalid: {task.title}") from e
+            except TypeError as e:
+                raise TypeError(f'Task {task.title}: {e}')
