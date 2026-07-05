@@ -1,4 +1,4 @@
-"""Save and load tasks from a simple text file."""
+'''Save and load tasks from a simple text file.'''
 
 from models import Task
 
@@ -10,7 +10,7 @@ def save_tasks(tasks, filename):
 
 
 def load_tasks(filename):
-    """Load tasks from a file. Should handle a missing file gracefully."""
+    '''Load tasks from a file. Should handle a missing file gracefully.'''
     tasks = []
     try:
         with open(filename, "r") as f:
