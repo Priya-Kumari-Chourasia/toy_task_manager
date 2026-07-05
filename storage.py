@@ -11,12 +11,15 @@ def save_tasks(tasks, filename):
 
 def load_tasks(filename):
     """Load tasks from a file. Should handle a missing file gracefully."""
-    # BUG: crashes with an unhandled FileNotFoundError if the file doesn't
-    # exist yet, instead of returning an empty list (a totally normal case
-    # for a brand new task list).
     tasks = []
-    with open(filename, "r") as f:
-        for line in f:
-            title, priority, done = line.strip().split(",")
-            tasks.append(Task(title, int(priority), done == "True"))
+    try:
+        with open(filename, "r") as f:
+            for line in f:
+                try:
+                    title, priority, done = line.strip().split(",")
+                    tasks.append(Task(title, int(priority), done == "True"))
+                except ValueError as e:
+                    print(f"Skipping malformed task: {e}")
+    except FileNotFoundError:
+        print(f"File '{filename}' not found. Returning empty task list.")
     return tasks
